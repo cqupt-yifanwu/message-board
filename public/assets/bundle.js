@@ -51,14 +51,23 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(33);
-	var CommentBox = __webpack_require__(184);
+	'use strict';
 
-	ReactDOM.render(
-	    React.createElement(CommentBox, {url: "/comments", pollInterval: 2000}),
-	    document.getElementById('commentbox')
-	 );
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _commentBox = __webpack_require__(184);
+
+	var _commentBox2 = _interopRequireDefault(_commentBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	_reactDom2.default.render(_react2.default.createElement(_commentBox2.default, { url: '/comments', pollInterval: 2000 }), document.getElementById('commentbox'));
 
 /***/ },
 /* 2 */
@@ -21755,140 +21764,260 @@
 /* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(33);
-	var marked = __webpack_require__(185);
-	var $ = __webpack_require__(186);
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _marked = __webpack_require__(185);
+
+	var _marked2 = _interopRequireDefault(_marked);
+
+	var _jquery = __webpack_require__(186);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// 评论内容
-	var Comment = React.createClass({displayName: "Comment",
-	  rawMarkup: function () {
-	    var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
-	    return { __html: rawMarkup };
-	  },
-	  render: function () {
-	    return (
-	      React.createElement("div", {className: "comment"}, 
-	        React.createElement("h2", {className: "commentAuthor"}, 
-	          this.props.author
-	        ), 
-	        React.createElement("span", {dangerouslySetInnerHTML: this.rawMarkup()}), 
-	        React.createElement(DeleteButton, {_id: this.props._id})
-	      )
-	    );
+	var Comment = function (_React$Component) {
+	  _inherits(Comment, _React$Component);
+
+	  function Comment() {
+	    _classCallCheck(this, Comment);
+
+	    return _possibleConstructorReturn(this, (Comment.__proto__ || Object.getPrototypeOf(Comment)).apply(this, arguments));
 	  }
-	});
+
+	  _createClass(Comment, [{
+	    key: 'rawMarkup',
+	    value: function rawMarkup() {
+	      var rawMarkup = (0, _marked2.default)(this.props.children.toString(), { sanitize: true });
+	      return { __html: rawMarkup };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'comment' },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: 'commentAuthor' },
+	          this.props.author
+	        ),
+	        _react2.default.createElement('span', { dangerouslySetInnerHTML: this.rawMarkup() }),
+	        _react2.default.createElement(DeleteButton, { _id: this.props._id })
+	      );
+	    }
+	  }]);
+
+	  return Comment;
+	}(_react2.default.Component);
 
 	// 删除按钮组件
-	var DeleteButton = React.createClass({displayName: "DeleteButton",
-	  handleClick: function () {
-	  var _id = this.props._id;
-	  $.ajax({
-	      url: '/comments/'+ _id,
-	      type: 'DELETE',
-	      dataType: 'json'
-	    });
-	  },
-	  render: function () {
-	    return (
-	      React.createElement("button", {className: "deleteButton", onClick: this.handleClick}, "删除")
-	      );
+
+
+	var DeleteButton = function (_React$Component2) {
+	  _inherits(DeleteButton, _React$Component2);
+
+	  function DeleteButton() {
+	    _classCallCheck(this, DeleteButton);
+
+	    return _possibleConstructorReturn(this, (DeleteButton.__proto__ || Object.getPrototypeOf(DeleteButton)).apply(this, arguments));
 	  }
-	});
+
+	  _createClass(DeleteButton, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var _id = this.props._id;
+	      _jquery2.default.ajax({
+	        url: '/comments/' + _id,
+	        type: 'DELETE',
+	        dataType: 'json'
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'button',
+	        { className: 'deleteButton', onClick: this.handleClick.bind(this) },
+	        '\u5220\u9664'
+	      );
+	    }
+	  }]);
+
+	  return DeleteButton;
+	}(_react2.default.Component);
 
 	// 评论列表
-	var CommentList = React.createClass({displayName: "CommentList",
-	  render: function() {
-	    var commentNodes = this.props.data.map(function (comment) {
-	      return (
-	        React.createElement(Comment, {author: comment.author, _id: comment._id}, 
-	          comment.text
-	        )
-	      );
-	    });     
-	    return (
-	      React.createElement("div", {className: "commentList"}, 
-	        commentNodes
-	      )
-	    );
+
+
+	var CommentList = function (_React$Component3) {
+	  _inherits(CommentList, _React$Component3);
+
+	  function CommentList() {
+	    _classCallCheck(this, CommentList);
+
+	    return _possibleConstructorReturn(this, (CommentList.__proto__ || Object.getPrototypeOf(CommentList)).apply(this, arguments));
 	  }
-	});
+
+	  _createClass(CommentList, [{
+	    key: 'render',
+	    value: function render() {
+	      var commentNodes = this.props.data.map(function (comment) {
+	        return _react2.default.createElement(
+	          Comment,
+	          { author: comment.author, _id: comment._id },
+	          comment.text
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'commentList' },
+	        commentNodes
+	      );
+	    }
+	  }]);
+
+	  return CommentList;
+	}(_react2.default.Component);
 
 	// 提交表单
-	var CommentForm = React.createClass({displayName: "CommentForm",
-	  handleSubmit: function(e) {
-	    e.preventDefault();
-	    var author = this.refs.author.value.trim();
-	    var text = this.refs.text.value.trim();
-	    if (!text || !author) {
+
+
+	var CommentForm = function (_React$Component4) {
+	  _inherits(CommentForm, _React$Component4);
+
+	  function CommentForm() {
+	    _classCallCheck(this, CommentForm);
+
+	    return _possibleConstructorReturn(this, (CommentForm.__proto__ || Object.getPrototypeOf(CommentForm)).apply(this, arguments));
+	  }
+
+	  _createClass(CommentForm, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var author = this.refs.author.value.trim();
+	      var text = this.refs.text.value.trim();
+	      if (!text || !author) {
+	        return;
+	      }
+	      this.props.onCommentSubmit({ author: author, text: text });
+	      this.refs.author.value = '';
+	      this.refs.text.value = '';
 	      return;
 	    }
-	    this.props.onCommentSubmit({author: author, text: text});
-	    this.refs.author.value = '';
-	    this.refs.text.value = '';
-	    return;
-	  },
-	  render: function() {
-	    return (
-	      React.createElement("form", {className: "commentForm", onSubmit: this.handleSubmit}, 
-	        React.createElement("input", {type: "text", placeholder: "你的名字", ref: "author"}), 
-	        React.createElement("input", {type: "text", placeholder: "说些什么...", ref: "text"}), 
-	        React.createElement("input", {type: "submit", value: "发表"})
-	      )
-	    );
-	  }
-	});
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'form',
+	        { className: 'commentForm', onSubmit: this.handleSubmit.bind(this) },
+	        _react2.default.createElement('input', { type: 'text', placeholder: '\u4F60\u7684\u540D\u5B57', ref: 'author' }),
+	        _react2.default.createElement('input', { type: 'text', placeholder: '\u8BF4\u4E9B\u4EC0\u4E48...', ref: 'text' }),
+	        _react2.default.createElement('input', { type: 'submit', value: '\u53D1\u8868' })
+	      );
+	    }
+	  }]);
+
+	  return CommentForm;
+	}(_react2.default.Component);
 
 	// 评论框 父组件
-	var CommentBox = React.createClass({displayName: "CommentBox",
-	  loadCommentsFromServer: function() {
-	    $.ajax({
-	      url: this.props.url,
-	      dataType: 'json',
-	      cache: false,
-	      success: function(data) {
-	        this.setState({data: data});
-	      }.bind(this),
-	      error: function(xhr, status, err) {
-	        console.error(this.props.url, status, err.toString());
-	      }.bind(this)
-	    });
-	  },
-	  handleCommentSubmit: function(comment) {
-	    // TODO: submit to the server and refresh the list
-	    var comments = this.state.data;
-	    var newComments = comments.concat([comment]);
-	    this.setState({data: newComments});    
-	    $.ajax({
-	      url: this.props.url,
-	      dataType: 'json',
-	      type: 'POST',
-	      data: comment,
-	      success: function(data) {
-	        this.setState({data: data});
-	      }.bind(this),
-	      error: function(xhr, status, err) {
-	        console.error(this.props.url, status, err.toString());
-	      }.bind(this)
-	    });    
-	  },
-	  getInitialState: function() {
-	    return {data: []};
-	  },
-	  componentDidMount: function() {
-	    this.loadCommentsFromServer();
-	    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-	  },
-	  render: function() {
-	    return (
-	      React.createElement("div", {className: "commentBox"}, 
-	        React.createElement("h1", null, "我的留言板"), 
-	        React.createElement(CommentList, {data: this.state.data}), 
-	        React.createElement(CommentForm, {onCommentSubmit: this.handleCommentSubmit})
-	      )
-	    );
+
+
+	var CommentBox = function (_React$Component5) {
+	  _inherits(CommentBox, _React$Component5);
+
+	  function CommentBox(props) {
+	    _classCallCheck(this, CommentBox);
+
+	    var _this5 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this, props));
+
+	    _this5.state = {
+	      data: []
+	    };
+	    _this5.loadCommentsFromServer = _this5.loadCommentsFromServer.bind(_this5); // 因为此函数在setInterval中调用，所以要为其绑定作用域
+	    return _this5;
 	  }
-	});
+
+	  _createClass(CommentBox, [{
+	    key: 'loadCommentsFromServer',
+	    value: function loadCommentsFromServer() {
+	      var _this6 = this;
+
+	      var that = this;
+	      _jquery2.default.ajax({
+	        url: that.props.url,
+	        dataType: 'json',
+	        cache: false,
+	        success: function success(data) {
+	          _this6.setState({ data: data });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'handleCommentSubmit',
+	    value: function handleCommentSubmit(comment) {
+	      var _this7 = this;
+
+	      // TODO: submit to the server and refresh the list
+	      var comments = this.state.data;
+	      var newComments = comments.concat([comment]);
+	      this.setState({ data: newComments });
+	      _jquery2.default.ajax({
+	        url: this.props.url,
+	        dataType: 'json',
+	        type: 'POST',
+	        data: comment,
+	        success: function success(data) {
+	          _this7.setState({ data: data });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var run = this.loadCommentsFromServer;
+	      var that = this;
+	      run();
+	      setInterval(run, that.props.pollInterval);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'commentBox' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          '\u6211\u7684\u7559\u8A00\u677F'
+	        ),
+	        _react2.default.createElement(CommentList, { data: this.state.data }),
+	        _react2.default.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit.bind(this) })
+	      );
+	    }
+	  }]);
+
+	  return CommentBox;
+	}(_react2.default.Component);
 
 	module.exports = CommentBox;
 

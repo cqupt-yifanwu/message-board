@@ -9,7 +9,14 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-		  { test: /\.js?$/, loaders: ['jsx-loader?harmony'] }
+		  	{
+		      	test:/\.js$/,
+		      	exclude:/node_modules/,
+		      	loader: 'babel',
+		      	query: {
+		      		presets: ['es2015','react']   // 这部分内容可以单独写成一个babelrc文件
+		      	}
+	      	}
 		]
 	}
 };

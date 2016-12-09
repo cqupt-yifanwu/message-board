@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CommentBox = require('./CommentBox');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CommentBox from './commentBox';
 
 ReactDOM.render(
     <CommentBox url="/comments" pollInterval={2000} />,
